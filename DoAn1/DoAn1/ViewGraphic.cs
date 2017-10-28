@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace DoAn1
 {
     class ViewGraphic
     {
+        Font stringFont;
         private Size point = new Size(20, 20); // Kích thước của điểm (sizeCircle)
         private Bitmap bitmap;
         private  int radius = 10; // bán kính của điểm ( _RADIUS )
@@ -50,7 +52,7 @@ namespace DoAn1
             //vẽ đường tròn
             g.DrawEllipse(pEllipse, rect);
             //font cho tên của điểm
-            Font stringFont = new Font("Arial", 9);
+            stringFont = new Font("Arial", 9);
 
             //Lấy giá trị chiều rộng và chiều cao của điểm
             SizeF stringSize = g.MeasureString(name, stringFont);
@@ -66,7 +68,7 @@ namespace DoAn1
         public Bitmap CreateGraphics(List<List<int>> canhke, List<Point> lstPointVertex)
         {
             Graphics g = Graphics.FromImage(bitmap);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
 
             g.Clear(Color.White);
             Pen pLine = new Pen(Color.FromArgb(100, 149, 237), 3);
@@ -76,6 +78,8 @@ namespace DoAn1
             // lam min bitmap
 
             Point ptStart, ptEnd;
+            
+
 
             // Vẽ đường thẳng nối các đỉnh
             for (int index = 0; index < canhke.Count; ++index)
@@ -90,6 +94,7 @@ namespace DoAn1
                     ptEnd = new Point(lstPointVertex[col].X, lstPointVertex[col].Y);
                     // nối các điểm lại với nhau
                     DrawLine(g, pLine, ptStart, ptEnd);
+                  
                 }
             }
 
@@ -109,12 +114,53 @@ namespace DoAn1
             pCircle.Dispose();
             return bitmap;
         }// #end create graphics
-   
+
+        // draw path
+        public Bitmap DrawPath(List<int> ReportPath, List<Point> lstPointVertices)
+        {
+            Graphics g = Graphics.FromImage(bitmap);
+
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            Pen pLine = new Pen(Color.Red, 3); // pen for line
+            Pen pClear = new Pen(Color.White, 3); // pen clear
+            pLine.DashStyle = DashStyle.Dash; // dash type for pen line
+            Brush cbrush = new SolidBrush(Color.Yellow); // fill ecllipse
+
+            Pen pCircle = new Pen(Color.Black); // pen for circle
+
+            // hightlight duong di
+            for (int index = 0; index < ReportPath.Count - 1; ++index)
+            {
+                this.DrawLine(g, pClear, lstPointVertices[ReportPath[index]], lstPointVertices[ReportPath[index + 1]]); // clear line
+                this.DrawLine(g, pLine, lstPointVertices[ReportPath[index]], lstPointVertices[ReportPath[index + 1]]);
+            }
+
+            // hightlight node nam tren duong di
+            for (int index = 0; index < ReportPath.Count; ++index)
+            {
+                Point ptCircle = new Point(lstPointVertices[ReportPath[index]].X - this.RADIUS,
+                                    lstPointVertices[ReportPath[index]].Y - this.RADIUS);
+                Rectangle rect = new Rectangle(ptCircle, point);
+
+                this.DrawNode(g, cbrush, pCircle, rect, ptCircle, (ReportPath[index] + 1).ToString());
+
+            }
+
+            g.Dispose();
+            pLine.Dispose();
+            cbrush.Dispose();
+            pClear.Dispose();
+            pCircle.Dispose();
+
+            return bitmap;
+  
+        }
         public Bitmap Reset(List<List<int>> adjacent, List<Point> lstPointVertices)
         {
             return this.CreateGraphics(adjacent, lstPointVertices);
         }
-
+       
     } // #End class 
       //
 }

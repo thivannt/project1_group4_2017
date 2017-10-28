@@ -239,6 +239,7 @@
             this.btnRunAll.TabIndex = 11;
             this.btnRunAll.Text = "Run All";
             this.btnRunAll.UseVisualStyleBackColor = true;
+            this.btnRunAll.Click += new System.EventHandler(this.btnRunAll_Click);
             // 
             // label4
             // 

@@ -20,7 +20,7 @@ namespace DoAn1
             lblNguon.Text = "Copyright by LTDT";
             lblNhom.Text += " Lê Quang Sơn_15110118." +
                 " --  Bành Công Minh_15110070.";
-            textBoxNoiDung.Text = "Thuật toán: ";
+            textBoxNoiDung.Text = "Thuật toán: Dijkstra ";
         }
 
         private void okButton_Click(object sender, EventArgs e)
