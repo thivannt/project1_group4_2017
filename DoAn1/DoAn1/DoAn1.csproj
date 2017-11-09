@@ -46,11 +46,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dijkstra.cs" />
+    <Compile Include="Draw\DrawingTools.cs" />
+    <Compile Include="Draw\Edge.cs" />
+    <Compile Include="Draw\GraphData.cs" />
+    <Compile Include="Draw\Matrix1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Draw\MovingBall.cs" />
+    <Compile Include="Draw\Node.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Draw\Vector2D.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphUI.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Matrix.cs" />
     <Compile Include="Program.cs" />

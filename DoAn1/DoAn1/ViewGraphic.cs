@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace DoAn1
 {
-    class ViewGraphic
+    public class ViewGraphic
     {
         Font stringFont;
         private Size point = new Size(20, 20); // Kích thước của điểm (sizeCircle)

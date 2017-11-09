@@ -19,7 +19,7 @@ namespace DoAn1
         }
         public List<int> findPathbyBfs(int tips, int start, int end)
         {
-            if (this._adjacent[start] == null || this._adjacent[end] == null)
+            if (_adjacent[start] == null || _adjacent[end] == null)
                 return null;
 
             bool[] visited = new bool[tips]; // danh dau cac dinh da tham
@@ -32,45 +32,42 @@ namespace DoAn1
                 visited[index] = false;
                 previous[index] = -1;
             }
-
-            this.VertexQueue.Enqueue(start);
+            VertexQueue.Enqueue(start);
             visited[start] = true;
-            while (this.VertexQueue.Count != 0)
+            while (VertexQueue.Count != 0)
             {
-                int v = this.VertexQueue.Dequeue();
+                int v = VertexQueue.Dequeue();
 
-                List<int> row = new List<int>(this._adjacent[v]);
+                List<int> row = new List<int>(_adjacent[v]);
                 if (row != null)
                 {
                     foreach (int col in row)
                     {
                         if (!visited[col])
                         {
-                            this.VertexQueue.Enqueue(col);
+                            VertexQueue.Enqueue(col);
                             previous[col] = v;
                             visited[col] = true;
-                            // neu diem ket thu duoc tham thi ket thuc thuat toan
-                            if (visited[end]) break;
+                            // neu diem ket thu duoc tham thi ket thuc thuat toan.                         
                         }
                     }
                 }
                 // diem cuoi duoc tham thi ket thuc thuat toan
                 if (visited[end]) break;
-
             }
             // neu diem ket thuc khong duoc tham thi tra ve null
             if (!visited[end]) return null;
 
             // truy vet duong di
             int current = end;
-            this._reportPath.Add(end);
+            _reportPath.Add(end);
             while (previous[current] != -1)
             {
-                this._reportPath.Add(previous[current]);
+                _reportPath.Add(previous[current]);
                 current = previous[current];
             }
-            this._reportPath.Reverse();
-            return this._reportPath;
+            _reportPath.Reverse();
+            return _reportPath;
         }
     }
 }
