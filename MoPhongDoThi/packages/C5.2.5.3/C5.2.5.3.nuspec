@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>C5</id>
+    <version>2.5.3</version>
+    <title>C5</title>
+    <authors>C5</authors>
+    <owners>C5</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://www.itu.dk/research/c5/</projectUrl>
+    <iconUrl>https://github.com/sestoft/C5/raw/master/images/icon-nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The C5 Generic Collection Library for C# and CLI is a comprehensive collection library supporting lists, sets, bags, dictionaries, priority queues, (FIFO) queues, and (LIFO) stacks. C5 runs on .NET 3.5+, Silverlight 5, Windows Phone 8, Xamarin.iOS, Xamarin.Android, and Mono.</description>
+    <summary />
+    <releaseNotes>New support for .NET Standard 1.0 and Profile259</releaseNotes>
+    <copyright>Copyright © Niels Kokholm, Peter Sestoft, and Rasmus Lystrøm 2003-2017</copyright>
+    <tags>Generics Collections Heap TreeSet PriorityQueue</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework3.5" />
+      <group targetFramework="Unsupported0.0">
+        <dependency id="NETStandard.Library" version="1.6.1" />
+      </group>
+      <group targetFramework=".NETPortable0.0-net45+win8+wp8+wpa81" />
+      <group targetFramework=".NETPortable0.0-net40+sl5+win8+wp8+wpa81" />
+      <group targetFramework=".NETFramework4.5" />
+      <group targetFramework=".NETFramework4.0" />
+    </dependencies>
+  </metadata>
+</package>
